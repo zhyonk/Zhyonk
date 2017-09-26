@@ -66,11 +66,11 @@
     </style>
 </head>
 <body>
-
+<div id ="chuang3">
 <div class="my-info">
     <div class="my-info-background" style="background-color:#fa4949; -webkit-filter:blur(0px)"></div>
     <img class="my-avatar" src="{{ headimgurl }}">
-    <span class="name">{{ content }}</span>
+    <span class="name">{{ nickname }}</span>
     <span class="my-vip" style="background:none">普通会员&nbsp;|&nbsp;积分:590&nbsp;|&nbsp;级别:初级</span>
 </div>
 
@@ -95,30 +95,8 @@
         <div class="cell-right cell-arrow">个人设置</div>
     </a>
 </div>
-
-<footer class="m-tabbar tabbar-fixed">
-    <a href="/index" class="tabbar-item">
-                <span class="tabbar-icon">
-                    <i class="demo-icons-weixin"></i>
-                    <span class="badge badge-danger">2</span>
-                </span>
-        <span class="tabbar-txt">主页</span>
-    </a>
-    <a href="/checkin" class="tabbar-item">
-                <span class="tabbar-icon">
-                    <i class="icon-compose"></i>
-                    <i class="demo-icons-contact"></i>
-                </span>
-        <span class="tabbar-txt">签到</span>
-    </a>
-
-    <a href="/personal" class="tabbar-item tabbar-active">
-                <span class="tabbar-icon">
-                    <i class="demo-icons-me"></i>
-                </span>
-        <span class="tabbar-txt">我</span>
-    </a>
-</footer>
+</div>
+{% include "footer.html" %}
 
 </body>
 </html>

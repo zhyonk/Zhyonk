@@ -1,8 +1,11 @@
 # -*- coding: UTF-8 -*-
 from django.conf.urls import url
 from django.contrib import admin
+from werobot.contrib.django import make_view
 
-from wechat.views import IndexView, personal, checkin, GetUserInfoView, WxSignature, TestView,AuthView
+from personal import personal
+from robot import robot
+from wechat.views import IndexView, checkin, GetUserInfoView, WxSignature, TestView, AuthView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -10,8 +13,8 @@ urlpatterns = [
     url(r'^personal/', personal),
     url(r'^checkin/', checkin),
     url(r'^auth/$', AuthView.as_view(), name='wx_auth'),  # 获取用户信息
-
-# 授权
+    url(r'^robot/', make_view(robot)),
+    # 授权
     url(r'^auth/$', AuthView.as_view(), name='wx_auth'),
     # 获取用户信息
     url(r'^code/$', GetUserInfoView.as_view(), name='get_user_info'),

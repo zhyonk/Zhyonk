@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
+
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse
 from django.http import HttpResponseServerError, Http404
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
-
 from models import Users as User, UserSerializer
 from robot import robot
 from wechat.auth_view import AuthView as BaseView
@@ -13,26 +16,15 @@ from wechat.wechat_api import WechatApi
 
 
 class IndexView(BaseView):
-    def index(self, request):
+    def get(self, request):
         request.encoding = 'utf-8'
         context = {}
-        code = request.GET['code']
-        # openid = getopenid(code)
-        # user_info = robot.client.get_user_info(openid)
-        # context['content'] = user_info['nickname']
-        # print user_info
-        # context['headimgurl'] = user_info['headimgurl']
+        user_info = request.session['user']
 
         return render(request, 'index.html', context)
 
 
-def personal(request):
-    request.encoding = 'utf-8'
-    context = {}
-    context['content'] = "11"
-    print robot.client.grant_token()
-    robot1 = robot
-    return render(request, 'personal.html', context)
+
 
 
 # 接收请求数据
@@ -67,7 +59,6 @@ class AuthView(WecahtApiView):
             else:
                 red_url = '%s%s?path=%s' % (self.HOST, reverse('get_user_info'), path)
                 redirect_url = self.wechat_api.auth_url(red_url, scope='snsapi_base')
-                print 'auth_url', redirect_url
                 return redirect(redirect_url)
         else:
             return Http404('parameter path not founded!')
@@ -130,7 +121,6 @@ class GetUserInfoView(WecahtApiView):
                 new_user.save()
 
                 user_data.update({'id': new_user.id})
-
                 return user_data
             except Exception, e:
                 print e
@@ -138,7 +128,8 @@ class GetUserInfoView(WecahtApiView):
             return None
         else:
             # 把User对象序列化成字典，具体看rest_framework中得内容
-            return UserSerializer(user[0]).data
+            result = UserSerializer(user[0]).data
+            return result
 
     # 解决中文显示乱码问题
     def _user2utf8(self, user_dict):

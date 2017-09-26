@@ -18,7 +18,7 @@ from rest_framework import serializers
 class Users(AbstractUser):
     openid = models.CharField(max_length=1000, blank=True, null=True, verbose_name="openid", unique=True)
     info = models.CharField(max_length=1000, blank=True, null=True, verbose_name="info", unique=True)
-    nick = models.CharField(max_length=1000, blank=True, null=True, verbose_name="nick", unique=True)
+    nick = models.CharField(max_length=2000, blank=True, null=True, verbose_name="nick", unique=True)
     avatar = models.CharField(max_length=1000, blank=True, null=True, verbose_name="avatar", unique=True)
 
 
@@ -43,7 +43,7 @@ class AuthView(View):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('nick', 'openid', 'avatar', 'info')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
