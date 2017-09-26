@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+
+    <link rel="stylesheet" href="{% static 'css/ydui.css' %}?rev=@@hash"/>
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}"/>
+    <script src="{% static 'js/ydui.flexible.js' %}"></script>
+</head>
+<body>
+<div class="m-cell">
+    <a class="cell-item" href="javascript:;">
+        <div class="cell-left"><i class="cell-icon icon-order"></i>正在参加</div>
+        <div class="cell-right cell-arrow">戒烟知识</div>
+    </a>
+    <a class="cell-item" href="javascript:;">
+        <div class="cell-left"><i class="cell-icon icon-like-outline"></i>商城</div>
+        <div class="cell-right cell-arrow"></div>
+    </a>
+</div>
+
+<div class="m-cell">
+    <a class="cell-item" href="javascript:;">
+        <div class="cell-left"><i class="cell-icon icon-order"></i>问题咨询</div>
+        <div class="cell-right cell-arrow">个人设置</div>
+    </a>
+</div>
+
+        <footer class="m-tabbar tabbar-fixed">
+            <a href="/index" class="tabbar-item">
+                <span class="tabbar-icon">
+                    <i class="demo-icons-weixin"></i>
+                    <span class="badge badge-danger">2</span>
+                </span>
+                <span class="tabbar-txt">主页</span>
+            </a>
+            <a href="/checkin" class="tabbar-item tabbar-active">
+                <span class="tabbar-icon">
+                    <i class="icon-compose"></i>
+                    <i class="demo-icons-contact"></i>
+                </span>
+                <span class="tabbar-txt">签到</span>
+            </a>
+            <a href="/personal" class="tabbar-item">
+                <span class="tabbar-icon">
+                    <i class="demo-icons-me"></i>
+                </span>
+                <span class="tabbar-txt">我</span>
+            </a>
+        </footer>
+
+</body>
+</html>
